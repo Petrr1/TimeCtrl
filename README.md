@@ -6,21 +6,21 @@
 - [-] breake:
     - [x] timer
     - [x] messeg
-        - [-] config end/bigin breake
     - [-] timer control
         - [x] stop
         - [x] start
         - [ ] pause
-- [ ] config:
-    - [ ] value timers
+- [-] config:
+    - [x] value timers
 - [ ] managment tasks
     - [ ] set curent tasks
     - [ ] show curent tasks
     - [ ] count time for task
     - [ ] jurnal tasks
     - [ ] integrate with [calcuse TODO](~/.local/share/calcuse/todo)
-- [-] managment app:
-    - [-] install
+- [ ] managment app:
+    - [x] installer
+    - [ ] uninstaller
 # ether
 ## messeg's interface:
     selfwrite lib
