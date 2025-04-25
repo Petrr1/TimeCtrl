@@ -1,5 +1,5 @@
 PROGECT_NAME="TimeControl"
-CONFIG=$HOME/.config/$PROGECT_NAME.sh
+CONFIG=$HOME/.config/$PROGECT_NAME.conf
 LOCAL_DIR=$HOME/.local/share/$PROGECT_NAME
 BAZIC_DIR=/opt/$PROGECT_NAME
 if [ $2 ]; then
