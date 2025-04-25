@@ -1,6 +1,6 @@
 PROGECT_NAME="TimeControl"
 SORCE=./src
-V="0.0-a"
+V="0.1-a"
 
 # super user
 sudo sh -c "\

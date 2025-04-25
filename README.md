@@ -1,7 +1,7 @@
 # wall map
 - [-] ui:
     - [x] messeg
-    - [ ] config breaker
+    - [x] config file
     - [ ] tasks
 - [-] breake:
     - [x] timer
@@ -18,7 +18,7 @@
     - [ ] count time for task
     - [ ] jurnal tasks
     - [ ] integrate with [calcuse TODO](~/.local/share/calcuse/todo)
-- [ ] managment app:
+- [ ] managment project:
     - [x] installer
     - [ ] uninstaller
 # ether

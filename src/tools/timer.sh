@@ -12,7 +12,7 @@ function breakeTimer() {
         sleep $(($step_end+s))
         echo $((100))
     fi) |\
-        yad --progress #--auto-close
+        yad --progress --text="$2" #--auto-close
 }
 
 function workTimer(){
@@ -26,7 +26,7 @@ function workCycle()
         echo $(date +%Y/%m/%d--%H:%M:%S)\>\>START WORK
         workTimer $time_work
         echo $(date +%Y/%m/%d--%H:%M:%S)\>\>START BREAKE
-        breakeTimer $time_breake
+        breakeTimer $time_breake "Breake Namber $i"
     done
     echo $(date +%Y/%m/%d--%H:%M:%S)\>\>FINISH CYCLE
 }

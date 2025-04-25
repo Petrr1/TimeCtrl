@@ -22,6 +22,9 @@ case $1 in
         echo 
         rm $LOCAL_DIR/id
         ;;
+    "show")
+        cat $LOCAL_DIR/log
+        ;;
     *)
         echo "not valide value"
         ;;
