@@ -1,0 +1,1 @@
+./src/TimeControl.sh $@ hh

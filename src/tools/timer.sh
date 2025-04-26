@@ -21,16 +21,12 @@ function workTimer(){
 
 function workCycle()
 {
-    echo $(date +%Y/%m/%d--%H:%M:%S)\>\>START CYCLE
+    echo $(add_log "START CYCLE")
     for i in $(seq 1 $1); do
-        echo $(date +%Y/%m/%d--%H:%M:%S)\>\>START WORK
+        echo $(add_log "START WORK")
         workTimer $time_work
-        echo $(date +%Y/%m/%d--%H:%M:%S)\>\>START BREAKE
+        echo $(add_log "START BREAKE")
         breakeTimer $time_breake "Breake Namber $i"
     done
-    echo $(date +%Y/%m/%d--%H:%M:%S)\>\>FINISH CYCLE
+    echo $(add_log "FINISH CYCLE")
 }
-
-time_breake=$4
-time_work=$3
-$1 $2

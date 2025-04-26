@@ -12,6 +12,14 @@
     - [x] messeg
     - [x] config file
     - [ ] tasks
+    - [ ] arguments
+        - [-] managment timer
+            - [x] start
+            - [x] stop
+            - [ ] pause
+        - [ ] get pash to castom config file
+        - [ ] get pash to castom log file
+        - [ ] get pash to castom id file
 - [-] breake:
     - [x] timer
     - [x] messeg
