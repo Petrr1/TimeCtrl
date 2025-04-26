@@ -1,3 +1,12 @@
+# Bigin
+## Using libs and utilits
+- yad
+- bash shell
+## Install
+1) Install using utilits;
+1) Run install.sh
+1) Edit .config/TimeControl.conf
+
 # wall map
 - [-] ui:
     - [x] messeg
@@ -21,7 +30,3 @@
 - [ ] managment project:
     - [x] installer
     - [ ] uninstaller
-# ether
-## messeg's interface:
-    selfwrite lib
-    yad + shell script //ACTUAL
