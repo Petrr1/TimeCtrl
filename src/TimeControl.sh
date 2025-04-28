@@ -1,32 +1,43 @@
-CONFIG=$HOME/.config/$PROGECT_NAME.conf
-LOCAL_DIR=$HOME/.local/share/$PROGECT_NAME
 BAZIC_DIR=$(dirname $0)
-if [ $2 ]; then
+source $BAZIC_DIR/tools/enveroments.env
+if [ $2=="test" ]; then
     CONFIG=$BAZIC_DIR/../config.conf
     LOCAL_DIR=$BAZIC_DIR/..
 fi
-
-source $CONFIG
 source $BAZIC_DIR/tools/loger.sh
-source $BAZIC_DIR/tools/timer.sh
+PIPE=$LOCAL_DIR/command_pipe
+
+function push(){
+    echo "$@" >> $PIPE
+}
 
 case $1 in
     "start")
-        i=$(yad  --entry --text="Start work time")
-        (workCycle $i >> $LOCAL_DIR/log)&
-        echo $! > $LOCAL_DIR/id
+        push "start"
         ;;
     "stop")
-        echo $(add_log "BREAKE CYCLE") >> $LOCAL_DIR/log
-        kill $(cat $LOCAL_DIR/id)
-        echo 
-        rm $LOCAL_DIR/id
+        push "stop"
+        ;;
+    "pause")
+        push "pause"
+        ;;
+    "play")
+        push "play"
+        ;;
+    "play-pause")
+        push "pause"
+        ;;
+    "reload")
+        push "reload"
         ;;
     "show")
         cat $LOCAL_DIR/log
         ;;
-    "pause")
-        echo "PAUSE"
+    "deamon")
+        exec $BAZIC_DIR/TimeControld.sh ${@[@]:1}
+        ;;
+    "kill")
+        push "killD"
         ;;
     *)
         echo "not valide value"

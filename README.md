@@ -13,21 +13,21 @@
     - [x] config file
     - [ ] tasks
     - [ ] arguments
-        - [-] managment timer
+        - [x] managment timer
             - [x] start
             - [x] stop
-            - [ ] pause
+            - [x] pause
         - [ ] get pash to castom config file
         - [ ] get pash to castom log file
         - [ ] get pash to castom id file
-- [-] breake:
+- [x] breake:
     - [x] timer
     - [x] messeg
-    - [-] timer control
+    - [x] timer control
         - [x] stop
         - [x] start
-        - [ ] pause
-- [-] config:
+        - [-] pause
+- [x] config:
     - [x] value timers
 - [ ] managment tasks
     - [ ] set curent tasks

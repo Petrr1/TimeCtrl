@@ -1,4 +1,5 @@
 function breakeTimer() {
+    my_id=$BASHPID
     step=$(($1/100))
     if [ $step == 0 ]; then
         step=1
@@ -13,20 +14,20 @@ function breakeTimer() {
         echo $((100))
     fi) |\
         yad --progress --text="$2" #--auto-close
+    echo $my_id > $LOCAL_DIR/command_pipe
 }
 
 function workTimer(){
-    sleep $1
+    my_id=$BASHPID
+    sleep $1s
+    echo $my_id > $LOCAL_DIR/command_pipe
 }
 
-function workCycle()
-{
-    echo $(add_log "START CYCLE")
-    for i in $(seq 1 $1); do
-        echo $(add_log "START WORK")
-        workTimer $time_work
-        echo $(add_log "START BREAKE")
-        breakeTimer $time_breake "Breake Namber $i"
-    done
-    echo $(add_log "FINISH CYCLE")
+function calc_time_toS(){
+    echo $(($1*3600+$2*60+$3))
+}
+
+function calc_need_time(){
+    timeD=($(($4-$1)) $(($5-$2)) $(($6-$3)))
+    echo $(($7-$(calc_time_toS ${timeD[@]})))
 }
