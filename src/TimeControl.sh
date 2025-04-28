@@ -1,5 +1,5 @@
 BAZIC_DIR=$(dirname $0)
-source $BAZIC_DIR/tools/enveroments.env
+source $BAZIC_DIR/tools/environments.env
 if [ $2=="test" ]; then
     CONFIG=$BAZIC_DIR/../config.conf
     LOCAL_DIR=$BAZIC_DIR/..
@@ -31,7 +31,7 @@ case $1 in
         push "reload"
         ;;
     "show")
-        cat $LOCAL_DIR/log
+        get_log
         ;;
     "deamon")
         exec $BAZIC_DIR/TimeControld.sh ${@[@]:1}
