@@ -34,7 +34,7 @@ case $1 in
         get_log
         ;;
     "deamon")
-        exec $BAZIC_DIR/TimeControld.sh ${@[@]:1}
+        exec $BAZIC_DIR/TimeControld.sh ${*:2}&
         ;;
     "kill")
         push "killD"
