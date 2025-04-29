@@ -1,9 +1,9 @@
 BAZIC_DIR=$(dirname $0)
 source $BAZIC_DIR/tools/environments.env
-if [ $2=="test" ]; then
-    CONFIG=$BAZIC_DIR/../config.conf
-    LOCAL_DIR=$BAZIC_DIR/..
-fi
+#   if [ $# -eq 3 ]; then
+#       CONFIG=$BAZIC_DIR/../config.conf
+#       LOCAL_DIR=$BAZIC_DIR/..
+#   fi
 source $BAZIC_DIR/tools/loger.sh
 PIPE=$LOCAL_DIR/command_pipe
 
