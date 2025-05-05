@@ -25,13 +25,13 @@ case $1 in
         push "play"
         ;;
     "play-pause")
-        push "pause"
+        push "switch-pause"
         ;;
     "reload")
         push "reload"
         ;;
     "show")
-        get_log
+        get_log | grep $(date +%Y/%m/%d)| yad --text-info --geometry=200x400
         ;;
     "deamon")
         exec $BAZIC_DIR/TimeControld.sh ${*:2}&

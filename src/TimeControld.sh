@@ -52,7 +52,7 @@ while [ 1 ]; do
                 status="PLAY"
                 add_log "RESUME"
                 workTimer $(calc_need_time ${timerT[@]} ${pauseT[@]} $time_work)&
-                    id=$!
+                id=$!
             fi
             ;;
         "pause")
@@ -63,7 +63,7 @@ while [ 1 ]; do
                 kill $id
             fi
             ;;
-        "play-pause")
+        "switch-pause")
             if [ $timerS == "work" ]; then
                 case $status in
                     "PAUSE")

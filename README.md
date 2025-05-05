@@ -6,29 +6,22 @@
 1) Install using utilits;
 1) Run install.sh
 1) Edit .config/TimeControl.conf
+## Using
+1) Run:
+> TimeControl deamon
+> TimeControl start
 
 # wall map
 - [-] ui:
     - [x] messeg
     - [x] config file
     - [ ] tasks
-    - [ ] arguments
-        - [x] managment timer
-            - [x] start
-            - [x] stop
-            - [x] pause
-        - [ ] get pash to castom config file
-        - [ ] get pash to castom log file
-        - [ ] get pash to castom id file
-- [x] breake:
-    - [x] timer
-    - [x] messeg
-    - [x] timer control
-        - [x] stop
-        - [x] start
-        - [-] pause
+    - [x] arguments
+    - [ ] loger
 - [x] config:
     - [x] value timers
+- [ ] deamon
+    - [ ] arg:KillD add finish for pause
 - [ ] managment tasks
     - [ ] set curent tasks
     - [ ] show curent tasks
@@ -38,3 +31,6 @@
 - [ ] managment project:
     - [x] installer
     - [ ] uninstaller
+    - [ ] systemctl deamon
+- [x] fix bags
+    - [x] arg:"paly-pause": not started "resum"
