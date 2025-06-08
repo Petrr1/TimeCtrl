@@ -3,13 +3,17 @@ source $SORCE/tools/environments.env
 
 # super user
 sudo sh -c "\
-    if [ $(ls /opt | grep $PROGECT_NAME) ]; then\
-        rm -rf /opt/$PROGECT_NAME/*;\
+    if [ $(ls /usr/local/bin | grep $PROGECT_NAME) ]; then\
+        rm -rf /usr/local/bin/$PROGECT_NAME/*;\
+        rm /usr/local/bin/$PROGECT_NAME.sh;\
+        rm /usr/local/bin/${PROGECT_NAME}d.sh;\
+        rm /usr/lib/systemd/system-sleep/TimeCtrl-sleep.sh\
+        rm /usr/lib/systemd/user/TimeCtrl.service\
     else\
-        mkdir /opt/$PROGECT_NAME;\
-        echo 'PATH=/opt/$PROGECT_NAME' >> /etc/environment;\
+        cp -r $SORCE/* /usr/local/bin/\
+        cp ./TimeCtrl-sleep.sh /usr/lib/systemd/system-sleep/TimeCtrl-sleep.sh\
+        cp ./TimeCtrl.service /usr/lib/systemd/user/TimeCtrl.service\
     fi;\
-    cp -r $SORCE/* /opt/$PROGECT_NAME/\
 "
 
 # user

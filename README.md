@@ -17,7 +17,7 @@
     - [x] config file
     - [ ] tasks
     - [x] arguments
-    - [ ] loger
+    - [-] loger
 - [x] config:
     - [x] value timers
 - [ ] deamon

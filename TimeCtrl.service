@@ -1,0 +1,14 @@
+#
+#pash: /usr/lib/systemd/user/
+[Unit]
+Description=TimeCtrl Deamon Service
+After=default.target
+
+[Service]
+Type=forking
+ExecStart=TimeCtrld.sh
+ExecReload=TimeCtrl.sh reload
+ExecStop=TimeCtrl.sh kill
+
+[Install]
+WantedBy=default.target
