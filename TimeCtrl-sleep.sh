@@ -1,8 +1,8 @@
-#!/bin/bash/
+#
 #path: /usr/lib/systemd/system-sleep/
 
 if [ "${1}" == "pre" ]; then
-    TimeCtrl.sh pause
+    /bin/bash TimeCtrl.sh pause
 elif [ "${1}" == "post" ]; then
-    TimeCtrl.sh play
+    /bin/bash TimeCtrl.sh play
 fi

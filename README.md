@@ -34,3 +34,4 @@
     - [ ] systemctl deamon
 - [x] fix bags
     - [x] arg:"paly-pause": not started "resum"
+    - [x] systemctl.service: user's files: not fond /root/.*

@@ -1,7 +1,7 @@
-#!/bin/bash/
+#!/bin/bash
 #pash: /usr/local/bin
-BAZIC_DIR=$(dirname $0)
-for __src in $(ls $BAZIC_DIR/tools); do source $BAZIC_DIR/tools/$__src; done
+BAZIC_DIR="/usr/local/bin"
+for __src in $(ls $BAZIC_DIR/TimeCtrl); do source $BAZIC_DIR/TimeCtrl/$__src; done
 if [ $# == 2 ]; then
     LOCAL_DIR=$1
     CONFIG=$2
