@@ -9,6 +9,7 @@ function breakeTimer() {
     step_end=$(($1%$step))
     (for i in $(seq 1 $step $(($1-$step_end))); do
         sleep $(($step+s))
+        echo $i,$1
         echo $(($i*100/$1))
     done
     if [ $step_end!=0 ]; then

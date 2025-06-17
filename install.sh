@@ -5,12 +5,10 @@ source $SORCE/TimeCtrl/environments.env
 sudo sh -c "\
     if [ '$(ls /usr/local/bin | grep $PROGECT_NAME)' ]; then\
         rm -rf /usr/local/bin/$PROGECT_NAME*;\
-        rm /usr/lib/systemd/system-sleep/TimeCtrl-sleep.sh;\
         rm /etc/systemd/user/TimeCtrl.service;\
     fi;\
     cp $SORCE/* /usr/local/bin/;\
     cp -r $SORCE/$PROGECT_NAME/ /usr/local/bin/;\
-    cp ./TimeCtrl-sleep.sh /usr/lib/systemd/system-sleep/TimeCtrl-sleep.sh;\
     cp ./TimeCtrl.service /etc/systemd/user/TimeCtrl.service;\
 "
 

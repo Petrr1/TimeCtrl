@@ -3,13 +3,14 @@
 - yad
 - bash shell
 ## Install
-1) Install using utilits;
-1) Run install.sh
-1) Edit .config/TimeControl.conf
+1. Install using utilits;
+1. Run install.sh
+1. Edit .config/TimeCtrl.conf
+1. `systemctl --user enable TimeCtrl.service`
 ## Using
-1) Run:
-> TimeControl deamon
-> TimeControl start
+1. Run:
+> TimeCtrl deamon
+> TimeCtrl start
 
 # wall map
 - [-] ui:
@@ -18,10 +19,12 @@
     - [ ] tasks
     - [x] arguments
     - [-] loger
+    - [ ] get stut
 - [x] config:
     - [x] value timers
-- [ ] deamon
-    - [ ] arg:KillD add finish for pause
+- [-] deamon
+    - [x] arg:KillD add finish for pause
+    - [-] pause-resume of suspend system
 - [ ] managment tasks
     - [ ] set curent tasks
     - [ ] show curent tasks
@@ -31,7 +34,7 @@
 - [ ] managment project:
     - [x] installer
     - [ ] uninstaller
-    - [ ] systemctl deamon
+    - [x] systemctl deamon
 - [x] fix bags
     - [x] arg:"paly-pause": not started "resum"
     - [x] systemctl.service: user's files: not fond /root/.*

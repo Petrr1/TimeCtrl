@@ -1,6 +1,6 @@
 [Unit]
 Description=TimeCtrl Deamon Service
-After=default.target
+BindTo=default.target
 
 [Service]
 ExecStart=/bin/bash TimeCtrld.sh
