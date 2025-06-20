@@ -2,15 +2,19 @@ SORCE=./src
 source $SORCE/TimeCtrl/environments.env
 
 # super user
+systemctl --user disable TimeCtrl.service
 sudo sh -c "\
     if [ '$(ls /usr/local/bin | grep $PROGECT_NAME)' ]; then\
         rm -rf /usr/local/bin/$PROGECT_NAME*;\
-        rm /etc/systemd/user/TimeCtrl.service;\
+        rm /etc/systemd/user/TimeCtrl*.service;\
     fi;\
     cp $SORCE/* /usr/local/bin/;\
     cp -r $SORCE/$PROGECT_NAME/ /usr/local/bin/;\
-    cp ./TimeCtrl.service /etc/systemd/user/TimeCtrl.service;\
+    cp ./*.service /etc/systemd/user/;\
 "
+systemctl --user daemon-reload
+systemctl --user enable TimeCtrl.service
+systemctl --user restart TimeCtrl.service
 
 # user
 if ! [ $(ls $HOME/.local/share | grep $PROGECT_NAME) ]; then

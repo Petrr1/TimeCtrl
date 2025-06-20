@@ -7,6 +7,8 @@
 1. Run install.sh
 1. Edit .config/TimeCtrl.conf
 1. `systemctl --user enable TimeCtrl.service`
+1. _opt_ add `TimeCtrl.sh pause` and `TimeCtrl.sh play` in your session-idle(exp:swayidl)
+    May be not stable.
 ## Using
 1. Run:
 > TimeCtrl deamon
@@ -22,9 +24,9 @@
     - [ ] get stut
 - [x] config:
     - [x] value timers
-- [-] deamon
+- [x] deamon
     - [x] arg:KillD add finish for pause
-    - [-] pause-resume of suspend system
+    - [x] pause-resume of suspend system
 - [ ] managment tasks
     - [ ] set curent tasks
     - [ ] show curent tasks

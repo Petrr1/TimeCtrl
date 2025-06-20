@@ -15,8 +15,9 @@ function breakeTimer() {
     if [ $step_end!=0 ]; then
         sleep $(($step_end+s))
         echo $((100))
-    fi) |\
+    fi) | env DISPLAY=:0 \
         yad --progress --text="$2" #--auto-close
+    echo "$(date +%H:%M:%S)-$DISPLAY" >> /home/petr/lohh
     echo $my_id > $LOCAL_DIR/command_pipe
 }
 
