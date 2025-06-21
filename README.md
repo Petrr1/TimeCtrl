@@ -11,8 +11,12 @@
     May be not stable.
 ## Using
 1. Run:
-> TimeCtrl deamon
-> TimeCtrl start
+> `TimeCtrl.sh start`
+2. Pause/Resum:
+> `TimeCtrl.sh pause`
+> `TimeCtrl.sh play`
+3. Stop:
+> `TimeCtrl.sh stop`
 
 # wall map
 - [-] ui:
