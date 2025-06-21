@@ -14,7 +14,6 @@ sudo sh -c "\
 "
 systemctl --user daemon-reload
 systemctl --user enable TimeCtrl.service
-systemctl --user restart TimeCtrl.service
 
 # user
 if ! [ $(ls $HOME/.local/share | grep $PROGECT_NAME) ]; then
@@ -24,3 +23,5 @@ fi
 if ! [ $(ls $HOME/.config | grep $PROGECT_NAME.conf) ]; then
     cp ./config.conf $HOME/.config/$PROGECT_NAME.conf
 fi
+
+systemctl --user restart TimeCtrl.service

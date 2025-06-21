@@ -3,11 +3,10 @@ Description=TimeCtrl Deamon Service
 BindTo=default.target
 
 [Service]
-Type=exec
 Environment=DISPLAY=:0
-ExecStart=/bin/bash TimeCtrld.sh
-ExecReload=/bin/bash TimeCtrl.sh reload
-ExecStop=/bin/bash TimeCtrl.sh kill
+ExecStart=TimeCtrld.sh
+ExecReload=TimeCtrl.sh reload
+ExecStop=TimeCtrl.sh kill
 
 [Install]
 WantedBy=default.target
