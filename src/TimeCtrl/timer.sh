@@ -31,6 +31,10 @@ function calc_time_toS(){
     echo $(($1*3600+$2*60+$3))
 }
 
+function calc_time_rang(){
+    echo ($(($4-$1)) $(($5-$2)) $(($6-$3)))
+}
+
 function calc_need_time(){
     timeD=($(($4-$1)) $(($5-$2)) $(($6-$3)))
     echo $(($7-$(calc_time_toS ${timeD[@]})))
