@@ -32,7 +32,7 @@ function calc_time_toS(){
 }
 
 function calc_time_rang(){
-    echo ($(($4-$1)) $(($5-$2)) $(($6-$3)))
+    echo "($(($4-$1)) $(($5-$2)) $(($6-$3)))"
 }
 
 function calc_need_time(){

@@ -54,7 +54,7 @@ while [ 1 ]; do
             if [ $status == "PAUSE" -a $timerS == "work" ]; then
                 status="PLAY"
                 add_log "RESUME"
-                fastVar=$(calc_time_toS($timerT))-$pauseT
+                fastVar=$(($(calc_time_toS ${timerT[@]}) -$pauseT))
                 timerT=($(date +%H\ %M\ %S))
                 workTimer $fastVar&
                 id=$!
@@ -64,7 +64,7 @@ while [ 1 ]; do
             if [ $status == "PLAY" -a $timerS == "work" ]; then
                 status="PAUSE"
                 add_log "PAUSE"
-                pauseT=$pauseT+$(calc_time_toS($(calc_time_rang(${timerT[@]},$(date +%H\ %M\ %S)))))
+                pauseT=$(($pauseT+$(calc_time_toS $(calc_time_rang ${timerT[@]} $(date +%H\ %M\ %S)))))
                 kill $id
             fi
             ;;
@@ -74,7 +74,7 @@ while [ 1 ]; do
                     "PAUSE")
                         status="PLAY"
                         add_log "RESUME"
-                        fastVar=$(calc_time_toS($timerT))-$pauseT
+                        fastVar=$(($(calc_time_toS ${timerT[@]})-$pauseT))
                         timerT=($(date +%H\ %M\ %S))
                         workTimer $fastVar&
                         id=$!
@@ -82,7 +82,7 @@ while [ 1 ]; do
                     "PLAY")
                         status="PAUSE"
                         add_log "PAUSE"
-                        pauseT=$pauseT+$(calc_time_toS($(calc_time_rang(${timerT[@]},$(date +%H\ %M\ %S)))))
+                        pauseT=$(($pauseT+$(calc_time_toS $(calc_time_rang ${timerT[@]} $(date +%H\ %M\ %S)))))
                         kill $id
                         ;;
                 esac
