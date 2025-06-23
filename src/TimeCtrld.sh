@@ -94,15 +94,15 @@ while [ 1 ]; do
             case $timerS in
                 "break")
                     pauseT=0
-                    workTimer $time_work&
                     timer_event "WORK" ${timerT[@]}
                     timerS="work"
+                    workTimer $time_work&
                     id=$!
                     ;;
                 "work")
                     timer_event "BREAKE" ${timerT[@]}
-                    breakeTimer $time_breake "TEXT"&
                     timerS="break"
+                    breakeTimer $time_breake "TEXT"&
                     id=$!
                     ;;
                 *)
