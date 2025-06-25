@@ -7,7 +7,7 @@
 1. Run install.sh
 1. Edit .config/TimeCtrl.conf
 1. `systemctl --user enable TimeCtrl.service`
-1. _opt_ add `TimeCtrl.sh pause` and `TimeCtrl.sh play` in your session-idle(exp:swayidl)
+1. _opt_ add `TimeCtrl.sh pause` and `TimeCtrl.sh play` in your session-idle(exp:swayidle)
     May be not stable.
 ## Using
 1. Run:

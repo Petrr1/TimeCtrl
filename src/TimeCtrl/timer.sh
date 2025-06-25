@@ -17,7 +17,6 @@ function breakeTimer() {
         echo $((100))
     fi) | env DISPLAY=:0 \
         yad --progress --text="$2" #--auto-close
-    echo "$(date +%H:%M:%S)-$DISPLAY" >> /home/petr/lohh
     echo $my_id > $LOCAL_DIR/command_pipe
 }
 
@@ -29,6 +28,13 @@ function workTimer(){
 
 function calc_time_toS(){
     echo $(($1*3600+$2*60+$3))
+}
+
+function calc_time_toHMS(){
+    H=$(($1/3600))
+    M=$((($1-$H*3600)/60))
+    S=$(($1-$H*3600-$M*60))
+    echo "($H $M $S)"
 }
 
 function calc_time_rang(){

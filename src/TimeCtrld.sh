@@ -114,6 +114,10 @@ while [ 1 ]; do
             source $CONFIG
             ;;
         # other
+        "giv_stat")
+            echo "$(calc_time_toHMS $pauseT+$(calc_time_toS $(calc_time_rang ${timerT[@]} $(date +%H\ %M\ %S))))"\
+                | env DISPLAY=:0 yad --text-info --geometry=100x50
+            ;;
         *)
             echo "OTHER"
             ;;
