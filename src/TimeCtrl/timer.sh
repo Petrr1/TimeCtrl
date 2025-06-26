@@ -27,13 +27,13 @@ function workTimer(){
 }
 
 function calc_time_toS(){
-    echo $(($1*3600+$2*60+$3))
+    echo $((${1}*3600+${2}*60+${3}))
 }
 
 function calc_time_toHMS(){
     H=$(($1/3600))
-    M=$((($1-$H*3600)/60))
-    S=$(($1-$H*3600-$M*60))
+    M=$((($1-${H}*3600)/60))
+    S=$(($1-${H}*3600-${M}*60))
     echo "($H $M $S)"
 }
 
