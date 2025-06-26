@@ -37,6 +37,7 @@ while [ 1 ]; do
             if [ $status == "ZERO" ]; then
                 status="PLAY"
                 add_log "START"
+                pauseT=0
                 workTimer $time_work&
                 id=$!
                 timerT=($(date +%H\ %M\ %S))
@@ -53,7 +54,9 @@ while [ 1 ]; do
             if [ $status == "PAUSE" -a $timerS == "work" ]; then
                 status="PLAY"
                 add_log "RESUME"
-                workTimer $(calc_need_time ${timerT[@]} ${pauseT[@]} $time_work)&
+                fastVar=$(($(calc_time_toS ${timerT[@]})-$pauseT))
+                timerT=($(date +%H\ %M\ %S))
+                workTimer $fastVar&
                 id=$!
             fi
             ;;
@@ -61,7 +64,7 @@ while [ 1 ]; do
             if [ $status == "PLAY" -a $timerS == "work" ]; then
                 status="PAUSE"
                 add_log "PAUSE"
-                pauseT=($(date +%H\ %M\ %S))
+                pauseT=$((${pauseT}+$(calc_time_toS $(calc_time_rang ${timerT[@]} $(date +%H\ %M\ %S)))))
                 kill $id
             fi
             ;;
@@ -71,13 +74,15 @@ while [ 1 ]; do
                     "PAUSE")
                         status="PLAY"
                         add_log "RESUME"
-                        workTimer $(calc_need_time ${timerT[@]} ${pauseT[@]} $time_work)&
+                        fastVar=$(($(calc_time_toS ${timerT[@]})-$pauseT))
+                        timerT=($(date +%H\ %M\ %S))
+                        workTimer $fastVar&
                         id=$!
                         ;;
                     "PLAY")
                         status="PAUSE"
                         add_log "PAUSE"
-                        pauseT=($(date +%H\ %M\ %S))
+                        pauseT=$((${pauseT}+$(calc_time_toS $(calc_time_rang ${timerT[@]} $(date +%H\ %M\ %S)))))
                         kill $id
                         ;;
                 esac
@@ -88,15 +93,16 @@ while [ 1 ]; do
             timerT=($(date +%H\ %M\ %S))
             case $timerS in
                 "break")
-                    workTimer $time_work&
+                    pauseT=0
                     timer_event "WORK" ${timerT[@]}
                     timerS="work"
+                    workTimer $time_work&
                     id=$!
                     ;;
                 "work")
                     timer_event "BREAKE" ${timerT[@]}
-                    breakeTimer $time_breake "TEXT"&
                     timerS="break"
+                    breakeTimer $time_breake "TEXT"&
                     id=$!
                     ;;
                 *)
@@ -108,6 +114,10 @@ while [ 1 ]; do
             source $CONFIG
             ;;
         # other
+        "giv_stat")
+        echo "$(calc_time_toHMS $(($pauseT+$(calc_time_toS $(calc_time_rang ${timerT[@]} $(date +%H\ %M\ %S))))))"\
+                | env DISPLAY=:0 yad --text-info --geometry=100x50
+            ;;
         *)
             echo "OTHER"
             ;;

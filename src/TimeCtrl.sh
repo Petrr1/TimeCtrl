@@ -35,6 +35,9 @@ case $1 in
     "show")
         get_log | grep $(date +%Y/%m/%d)| yad --text-info --geometry=200x400
         ;;
+    "status")
+        push "giv_stat"
+        ;;
     "daemon")
         exec $BAZIC_DIR/${PROGECT_NAME}d.sh ${*:2}&
         ;;
