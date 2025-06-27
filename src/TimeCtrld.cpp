@@ -1,9 +1,18 @@
 #include <iostream>
 #include "include/timer.hpp"
+#include <string>
 #include <thread>
 
 void func(){
-    sleep(4);
+    for (int i = 0; i < 5; i++) {
+        sleep(2);
+        std::cout << i;
+    }
+}
+
+void func_inp(){
+    std::string str;
+    std::cin >> str;
 }
 
 int main() {
