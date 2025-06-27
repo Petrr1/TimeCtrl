@@ -54,7 +54,7 @@ while [ 1 ]; do
             if [ $status == "PAUSE" -a $timerS == "work" ]; then
                 status="PLAY"
                 add_log "RESUME"
-                fastVar=$(($(calc_time_toS ${timerT[@]})-$pauseT))
+                fastVar=$((${time_work}-${pauseT}))
                 timerT=($(date +%H\ %M\ %S))
                 workTimer $fastVar&
                 id=$!
@@ -74,7 +74,7 @@ while [ 1 ]; do
                     "PAUSE")
                         status="PLAY"
                         add_log "RESUME"
-                        fastVar=$(($(calc_time_toS ${timerT[@]})-$pauseT))
+                        fastVar=$((${time_work}-${pauseT}))
                         timerT=($(date +%H\ %M\ %S))
                         workTimer $fastVar&
                         id=$!
