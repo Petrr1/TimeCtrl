@@ -1,24 +1,23 @@
+#include <condition_variable>
 #include <iostream>
 #include "include/timer.hpp"
-#include <string>
+#include <mutex>
+#include <ostream>
 #include <thread>
+#include <unistd.h>
+
+using namespace std;
+condition_variable manager;
+mutex mutex;
 
 void func(){
-    for (int i = 0; i < 5; i++) {
-        sleep(2);
-        std::cout << i;
-    }
+    sleep(5);
 }
 
 void func_inp(){
-    std::string str;
-    std::cin >> str;
 }
 
 int main() {
-    Timer test_timer(4);
-    std::thread test_thread(func);
-    test_thread.join();
-    std::cout << "ddd\n";
+    unique_lock lk(manager);
     return 0;
 }
