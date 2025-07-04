@@ -39,9 +39,13 @@ void Buss::pull() {
             std::cin >> str;
             if (str == "start") {
                 set_comm(start);
-            }else if (str == "stop") {
+            } else if (str == "stop") {
                 set_comm(stop);
-            }else {
+            } else if (str == "kill") {
+                set_comm(kill);
+            } else if (str == "stat") {
+                set_comm(stat);
+            } else {
                 this->push(-1);
             }
         }
