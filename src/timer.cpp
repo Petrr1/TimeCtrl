@@ -1,55 +1,54 @@
 #include "include/timer.hpp"
 #include <iostream>
+#include <mutex>
 
 // construct/destruct
-Timer::Timer(std::condition_variable* notife_cv, int time_sec) {
-    _time = time_sec;
-    event_cv = notife_cv;
-    event_id = nullptr;
-    stat = stop_s;
-}
-
-Timer::Timer(std::atomic<int>* timer_pip, int id_timer, std::condition_variable* notife_cv, int time_sec) {
-    _time = time_sec;
-    event_cv = notife_cv;
-    event_id = timer_pip;
-    stat = stop_s;
-    _id = id_timer;
-}
-
-Timer::~Timer() {
-    this->stop();
+Timer::Timer(const std::vector<std::chrono::seconds> timers, std::condition_variable* notife_cv) {
+    this->timers = timers;
+    this->curent_id = -1;
+    if (notife_cv) {
+        this->alarm_cv = notife_cv;
+        this->alarm_out = true;
+    } else {
+        this->alarm_cv = new std::condition_variable();
+        this->alarm_out = false;
+    }
 }
 
 // public  metods
-void Timer::run() {
-    if (stat == stop_s) {
-        stat = run_s;
-        timer_trad = std::thread(&Timer::run_timer, this);
-    }
+void Timer::run(int id) {
+    this->stop();
+    this->curent_id = id;
+    this->timer_th = std::thread(&Timer::timer_run, this, timers[id]);
 }
 
 void Timer::stop() {
-    if(stat == run_s) {
-        stat = proc_stop_s;
-        stop_trig.notify_all();
-    }
-    if (timer_trad.joinable()) {
-        timer_trad.join();
+    if (this->timer_th.joinable()) {
+        this->curent_id = -1;
+        this->timer_stop_cv.notify_all();
+        this->timer_th.join();
     }
 }
 
-status_ Timer::get_stat() {
-    return stat;
+int Timer::wait() {
+    if (this->alarm_out || this->timer_th.joinable()) {
+        std::unique_lock lk(this->wait_m);
+        this->alarm_cv->wait(lk);
+        if (!this->raning && this->timer_th.joinable()) {
+            this->timer_th.join();
+            int _id = this->curent_id;
+            this->curent_id = -1;
+            return _id;
+        }
+    }
+    return -1;
 }
 
 // privot metods
-void Timer::run_timer(){
-    std::unique_lock lk(timer_ctrl);
-    stop_trig.wait_for(lk, std::chrono::seconds(_time), [this](){ return stat==proc_stop_s; });
-    std::cerr << "timer(" << _id <<") stoped\n";
-    stat = stop_s;
-    stat.notify_one();
-    if (event_id) { event_id->store(_id); }
-    event_id->notify_all();
+void Timer::timer_run(std::chrono::seconds timeout) {
+    this->raning = true;
+    std::unique_lock lk(this->timer_m);
+    this->timer_stop_cv.wait_for(lk, timeout, [this]{return this->curent_id == -1;});
+    this->raning = false;
+    alarm_cv->notify_all();
 }

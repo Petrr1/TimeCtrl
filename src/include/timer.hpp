@@ -1,37 +1,32 @@
 #include <atomic>
 #include <condition_variable>
 #include <chrono>
-#include <stdexcept>
 #include <mutex>
 #include <thread>
 #include <thread>
-
-enum status_ {
-    stop_s,
-    run_s,
-    proc_stop_s,
-};
+#include <vector>
 
 class Timer {
     public:
-        Timer(std::condition_variable* notife_cv, int time_sec);
-        Timer(std::atomic<int>* timer_pip, int id_timer, std::condition_variable* notife_cv, int time_sec);
-        ~Timer();
+        Timer(const std::vector<std::chrono::seconds> timers, std::condition_variable* notify = nullptr);
+        ~Timer() = default;
 
-        void run();
+        void run(int id);
         void stop();
-        status_ get_stat();
+        int wait();
 
     private:
-        int _time;
-        int _id=0;
-        void run_timer();
-        std::atomic<status_> stat;
+        void timer_run(std::chrono::seconds timeout);
 
-        std::thread timer_trad;
-        std::condition_variable stop_trig;
-        std::mutex timer_ctrl;
-
-        std::condition_variable* event_cv;
-        std::atomic<int>* event_id;
+        std::vector<std::chrono::seconds> timers;
+        // timer controll
+        std::thread timer_th;
+        std::condition_variable timer_stop_cv;
+        std::mutex timer_m;
+        std::atomic<int> curent_id;
+        std::atomic<bool> raning;
+        // event notify
+        std::condition_variable* alarm_cv;
+        bool alarm_out;
+        std::mutex wait_m;
 };
