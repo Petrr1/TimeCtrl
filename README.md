@@ -1,22 +1,10 @@
 # Bigin
+
 ## Using libs and utilits
-- yad
-- bash shell
+
 ## Install
-1. Install using utilits;
-1. Run install.sh
-1. Edit .config/TimeCtrl.conf
-1. `systemctl --user enable TimeCtrl.service`
-1. _opt_ add `TimeCtrl.sh pause` and `TimeCtrl.sh play` in your session-idle(exp:swayidle)
-    May be not stable.
+
 ## Using
-1. Run:
-> `TimeCtrl.sh start`
-2. Pause/Resum:
-> `TimeCtrl.sh pause`
-> `TimeCtrl.sh play`
-3. Stop:
-> `TimeCtrl.sh stop`
 
 # wall map
 - [-] ui:
